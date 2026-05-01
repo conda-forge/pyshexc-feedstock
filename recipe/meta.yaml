@@ -1,18 +1,18 @@
 {% set name = "PyShExC" %}
-{% set version = "0.9.1" %}
+{% set version = "0.10.3.post1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/PyShExC-{{ version }}.tar.gz
-  sha256: 35a9975d4b9afeb20ef710fb6680871756381d0c39fbb5470b3b506581a304d3
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | lower }}-{{ version }}.tar.gz
+  sha256: 80d9d067c80af9a796e3c1c47d2207edf2e9a9fc39d3ca0ce5dd2019334ea915
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
