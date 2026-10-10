@@ -35,6 +35,11 @@ requirements:
     - shexjsg >=0.8.1
 
 tests:
+  - package_contents:
+      strict: true
+      site_packages:
+        - pyshexc/**
+        - pyshexc-${{ version }}.dist-info/**
   - python:
       imports: pyshexc
       pip_check: true
