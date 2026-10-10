@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  python_min: "3.10"
+  version: 0.10.3.post1
+
+package:
+  name: pyshexc
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/p/pyshexc/pyshexc-${{ version }}.tar.gz
+  sha256: 80d9d067c80af9a796e3c1c47d2207edf2e9a9fc39d3ca0ce5dd2019334ea915
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --check-build-dependencies --disable-pip-version-check
+
+requirements:
+  host:
+    - hatchling
+    - pip
+    - python ${{ python_min }}.*
+    - uv-dynamic-versioning
+  run:
+    - antlr4-python3-runtime >=4.9.3,<4.10.dev0
+    - chardet >=7.4.1
+    - jsonasobj >=1.2.1
+    - pyjsg >=0.11.10
+    - python >=${{ python_min }}
+    - rdflib-shim >=1.0.3
+    - shexjsg >=0.8.1
+
+tests:
+  - python:
+      imports: pyshexc
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+
+about:
+  summary: Python Antlr ShExC parser
+  license: MIT
+  license_file: LICENSE
+  homepage: https://pypi.org/project/pyshexc
+  repository: https://github.com/linkml/grammar-python-antlr-linkml
+
+extra:
+  recipe-maintainers:
+    - bollwyvl
